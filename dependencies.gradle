@@ -1,0 +1,9 @@
+ext.lib = [
+        groovy_all                         : 'org.codehaus.groovy:groovy-all:2.4.12',
+
+
+]
+
+ext.lib_pack = [
+
+]

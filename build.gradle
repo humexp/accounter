@@ -1,0 +1,28 @@
+group 'com.example.accounter'
+
+buildscript {
+    repositories {
+        repositories {
+            mavenCentral()
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+apply plugin: 'java'
+
+apply from: "$rootProject.projectDir/dependencies.gradle"
+
+dependencies {
+    compile lib.groovy_all
+
+}
+
+jar {
+    archiveName = 'accounter.jar'
+}
+
