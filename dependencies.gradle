@@ -1,9 +1,18 @@
 ext.lib = [
-        groovy_all                         : 'org.codehaus.groovy:groovy-all:2.4.12',
+        akka_http        : 'com.typesafe.akka:akka-http_2.12:10.1.5',
+        akka_stream      : 'com.typesafe.akka:akka-stream_2.12:2.5.12',
+        akka_http_jackson: 'com.typesafe.akka:akka-http-jackson_2.12:10.1.5',
 
-
+        logback_classic  : 'ch.qos.logback:logback-classic:1.2.3'
 ]
 
 ext.lib_pack = [
-
+        http: [
+                ext.lib.akka_http,
+                ext.lib.akka_stream,
+                ext.lib.akka_http_jackson
+        ],
+        log : [
+                ext.lib.logback_classic
+        ]
 ]
