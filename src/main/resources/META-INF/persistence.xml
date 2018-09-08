@@ -5,7 +5,7 @@
 
 
     <persistence-unit name="accounter">
-        <description>Test persistent unit</description>
+        <description>Test persistence unit</description>
 
         <class>com.example.accounter.entity.Account</class>
         <class>com.example.accounter.entity.Transfer</class>

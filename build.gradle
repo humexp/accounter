@@ -21,6 +21,8 @@ dependencies {
     compile lib_pack.http
     compile lib_pack.persistence
     compile lib_pack.log
+
+    testCompile lib_pack.test
 }
 
 jar {

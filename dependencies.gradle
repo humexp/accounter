@@ -6,7 +6,11 @@ ext.lib = [
         hibernate_core   : 'org.hibernate:hibernate-core:5.3.3.Final',
         db               : 'com.h2database:h2:1.4.197',
 
-        logback_classic  : 'ch.qos.logback:logback-classic:1.2.3'
+        logback_classic  : 'ch.qos.logback:logback-classic:1.2.3',
+
+        akka_http_testkit: 'com.typesafe.akka:akka-http-testkit_2.12:10.1.5',
+        junit            : 'junit:junit:4.12',
+        commons_io       : 'commons-io:commons-io:2.6'
 ]
 
 ext.lib_pack = [
@@ -21,5 +25,10 @@ ext.lib_pack = [
         ],
         log        : [
                 ext.lib.logback_classic
+        ],
+        test       : [
+                ext.lib.akka_http_testkit,
+                ext.lib.junit,
+                ext.lib.commons_io
         ]
 ]
