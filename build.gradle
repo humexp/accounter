@@ -19,6 +19,7 @@ apply from: "$rootProject.projectDir/dependencies.gradle"
 
 dependencies {
     compile lib_pack.http
+    compile lib_pack.persistence
     compile lib_pack.log
 }
 

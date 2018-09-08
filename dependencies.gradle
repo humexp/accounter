@@ -3,16 +3,23 @@ ext.lib = [
         akka_stream      : 'com.typesafe.akka:akka-stream_2.12:2.5.12',
         akka_http_jackson: 'com.typesafe.akka:akka-http-jackson_2.12:10.1.5',
 
+        hibernate_core   : 'org.hibernate:hibernate-core:5.3.3.Final',
+        db               : 'com.h2database:h2:1.4.197',
+
         logback_classic  : 'ch.qos.logback:logback-classic:1.2.3'
 ]
 
 ext.lib_pack = [
-        http: [
+        http       : [
                 ext.lib.akka_http,
                 ext.lib.akka_stream,
                 ext.lib.akka_http_jackson
         ],
-        log : [
+        persistence: [
+                ext.lib.hibernate_core,
+                ext.lib.db
+        ],
+        log        : [
                 ext.lib.logback_classic
         ]
 ]
