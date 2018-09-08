@@ -12,13 +12,12 @@ import com.example.accounter.api.Controller;
 
 public class ControllerConfiguration {
     public static void init(ActorSystem system) {
-        Http http = Http.get(system);
         ActorMaterializer materializer = ActorMaterializer.create(system);
         ConnectHttp connect = ConnectHttp.toHost("localhost", 8080);
 
+        Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = new Controller().createRoute()
+                .flow(system, materializer);
 
-        Controller accountController = new Controller();
-        Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = accountController.createRoute().flow(system, materializer);
-        http.bindAndHandle(routeFlow, connect, materializer);
+        Http.get(system).bindAndHandle(routeFlow, connect, materializer);
     }
 }

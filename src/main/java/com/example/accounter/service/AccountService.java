@@ -1,12 +1,11 @@
 package com.example.accounter.service;
 
-import com.example.accounter.component.PersistenceUtil;
 import com.example.accounter.entity.Account;
-import com.example.accounter.entity.Transfer;
 
 import javax.persistence.EntityManager;
-import java.math.BigDecimal;
 import java.util.List;
+
+import static com.example.accounter.component.PersistenceUtil.getEntityManager;
 
 public class AccountService {
     private static final AccountService ACCOUNT_SERVICE = new AccountService();
@@ -16,7 +15,7 @@ public class AccountService {
     }
 
     public Account createAccount(Account account) {
-        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityManager em = getEntityManager();
 
         try {
             em.getTransaction().begin();
@@ -29,12 +28,12 @@ public class AccountService {
     }
 
     public Account getAccount(Long id) {
-        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityManager em = getEntityManager();
         return em.find(Account.class, id);
     }
 
     public void deleteAccount(Long id) {
-        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityManager em = getEntityManager();
 
         try {
             em.getTransaction().begin();
@@ -53,7 +52,7 @@ public class AccountService {
     }
 
     public List<Account> getAccountList() {
-        EntityManager em = PersistenceUtil.getEntityManager();
+        EntityManager em = getEntityManager();
         return em.createQuery("select a from Account a", Account.class).getResultList();
     }
 }
