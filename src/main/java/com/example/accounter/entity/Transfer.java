@@ -29,6 +29,10 @@ public class Transfer {
         this.sum = sum;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
     public Long getAccountFrom() {
         return accountFrom;
     }

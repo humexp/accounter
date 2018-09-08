@@ -19,8 +19,4 @@ public class PersistenceUtil {
     public static EntityManager getEntityManager() {
         return entityManagerFactory.createEntityManager();
     }
-
-    public static void close() {
-        entityManagerFactory.close();
-    }
 }

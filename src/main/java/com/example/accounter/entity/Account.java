@@ -50,4 +50,8 @@ public class Account {
     public String getActivityStatus() {
         return activityStatus;
     }
+
+    public void setBalance(String balance) {
+        this.balance = balance;
+    }
 }

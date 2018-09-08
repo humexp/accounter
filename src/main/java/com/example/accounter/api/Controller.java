@@ -8,6 +8,7 @@ import akka.http.javadsl.server.Route;
 import com.example.accounter.entity.Account;
 import com.example.accounter.entity.Transfer;
 import com.example.accounter.service.AccountService;
+import com.example.accounter.service.TransferService;
 
 import static akka.http.javadsl.server.PathMatchers.longSegment;
 
@@ -37,7 +38,6 @@ public class Controller extends AllDirectives {
         return get(() ->
                 pathPrefix(ROOT.slash("account"), () ->
                         path(longSegment(), (Long id) ->
-
                                 completeOK(AccountService.instance().getAccount(id), Jackson.marshaller())
                         )
                 )
@@ -56,7 +56,7 @@ public class Controller extends AllDirectives {
         return post(() ->
                 path(ROOT.slash("transfer"), () ->
                         entity(Jackson.unmarshaller(Transfer.class), transfer ->
-                                completeOK(AccountService.instance().executeTransfer(transfer), Jackson.marshaller())
+                                completeOK(TransferService.instance().executeTransfer(transfer), Jackson.marshaller())
                         )
                 )
         );

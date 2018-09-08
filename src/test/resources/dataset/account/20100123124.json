@@ -2,6 +2,6 @@
   "id" : 20100123124,
   "company" : "Bellagio",
   "iban" : "CY21002001950000357001234567",
-  "balance" : "15000.00",
+  "balance" : "15000",
   "activityStatus" : "active"
 }
