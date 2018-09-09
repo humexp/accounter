@@ -10,7 +10,7 @@ import static com.example.accounter.config.ControllerConfiguration.HOST;
 import static com.example.accounter.config.ControllerConfiguration.PORT;
 
 
-public class Application extends AllDirectives {
+public class Application {
     private static final Logger logger = LoggerFactory.getLogger(Application.class);
 
     public static void main(String[] args) {

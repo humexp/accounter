@@ -1,10 +1,13 @@
+import com.github.jengelman.gradle.plugins.shadow.transformers.AppendingTransformer
+
 group 'com.example.accounter'
 
 buildscript {
     repositories {
-        repositories {
-            mavenCentral()
-        }
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.4'
     }
 }
 
@@ -14,6 +17,7 @@ repositories {
 }
 
 apply plugin: 'java'
+apply plugin: 'com.github.johnrengelman.shadow'
 
 apply from: "$rootProject.projectDir/dependencies.gradle"
 
@@ -25,7 +29,12 @@ dependencies {
     testCompile lib_pack.test
 }
 
-jar {
+shadowJar {
     archiveName = 'accounter.jar'
+    transform(AppendingTransformer) {
+        resource = 'reference.conf'
+    }
+    manifest {
+        attributes 'Main-Class': 'com.example.accounter.Application'
+    }
 }
-

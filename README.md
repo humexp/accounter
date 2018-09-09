@@ -2,7 +2,20 @@
 
 - - - -
 
-## Create Account
+## Usage
+### Run tests
+```
+    gradlew test
+```
+
+### Start application
+```
+    gradlew clean shadowJar
+    java -jar build/libs/accounter.jar
+```
+
+## Api
+### Create Account
 PUT - `api/account`
 ```
 {
@@ -14,13 +27,13 @@ PUT - `api/account`
 }
 ```
 
-## Get Account
+### Get Account
 GET - `api/account`
 
-## Get all Accounts
+### Get all Accounts
 GET - `api/account/all`
 
-## Execute Transfer
+### Execute Transfer
 POST - `api/transfer`
 ```
 {
