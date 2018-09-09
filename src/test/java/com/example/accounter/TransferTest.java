@@ -21,5 +21,16 @@ public class TransferTest extends JUnitRouteTest {
         transferUtil.checkTransferExistence(transfer);
     }
 
-    // TODO: Add multiple transfers
+    @Test
+    public void multipleTransfersTest() {
+        transferUtil.createAccount("20100123124");
+        transferUtil.createAccount("20100123125");
+
+        transferUtil.executeTransfer("transfer_1000_22");
+        transferUtil.executeTransfer("transfer_1500");
+        transferUtil.executeTransfer("transfer_2400_56");
+
+        transferUtil.checkAccountBalance("20100123124", "14900.34");
+        transferUtil.checkAccountBalance("20100123125", "18099.66");
+    }
 }

@@ -1,11 +1,9 @@
 # Accounter
 
 - - - -
-4 september, 14:42 - 11 september, 14:42
-
 
 ## Create Account
-PUT - api/account
+PUT - `api/account`
 ```
 {
     "id" : 20100123123,
@@ -13,5 +11,21 @@ PUT - api/account
     "iban" : "CY21002001950000357001234567",
     "balance" : "15000.00",
     "activityStatus" : "active"
+}
+```
+
+## Get Account
+GET - `api/account`
+
+## Get all Accounts
+GET - `api/account/all`
+
+## Execute Transfer
+POST - `api/transfer`
+```
+{
+  "accountFrom": 20100123124,
+  "accountTo": 20100123125,
+  "sum": "1000.22"
 }
 ```

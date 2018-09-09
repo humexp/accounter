@@ -11,9 +11,12 @@ import akka.stream.javadsl.Flow;
 import com.example.accounter.api.Controller;
 
 public class ControllerConfiguration {
+    public static final String HOST = "localhost";
+    public static final int PORT = 8080;
+
     public static void init(ActorSystem system) {
         ActorMaterializer materializer = ActorMaterializer.create(system);
-        ConnectHttp connect = ConnectHttp.toHost("localhost", 8080);
+        ConnectHttp connect = ConnectHttp.toHost(HOST, PORT);
 
         Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = new Controller().createRoute()
                 .flow(system, materializer);

@@ -6,6 +6,9 @@ import com.example.accounter.config.ControllerConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static com.example.accounter.config.ControllerConfiguration.HOST;
+import static com.example.accounter.config.ControllerConfiguration.PORT;
+
 
 public class Application extends AllDirectives {
     private static final Logger logger = LoggerFactory.getLogger(Application.class);
@@ -14,6 +17,6 @@ public class Application extends AllDirectives {
         ActorSystem system = ActorSystem.create("accounter");
         ControllerConfiguration.init(system);
 
-        logger.info("Server started at http://localhost:8080");
+        logger.info("Server started at http://" + HOST + ":" + PORT);
     }
 }
