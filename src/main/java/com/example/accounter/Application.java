@@ -1,7 +1,6 @@
 package com.example.accounter;
 
 import akka.actor.ActorSystem;
-import akka.http.javadsl.server.AllDirectives;
 import com.example.accounter.config.ControllerConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
