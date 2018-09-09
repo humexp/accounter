@@ -5,7 +5,9 @@ import com.example.accounter.entity.Account;
 import com.example.accounter.entity.Transfer;
 
 import javax.persistence.EntityManager;
+import javax.persistence.LockModeType;
 import java.math.BigDecimal;
+import java.util.function.Function;
 
 public class TransferService {
     private static final TransferService TRANSFER_SERVICE = new TransferService();
@@ -25,19 +27,9 @@ public class TransferService {
         try {
             em.getTransaction().begin();
 
-            Account accountFrom = em.find(Account.class, transfer.getAccountFrom());
-            Account accountTo = em.find(Account.class, transfer.getAccountTo());
-
             BigDecimal sum = new BigDecimal(transfer.getSum());
-
-            String accFromBalance = new BigDecimal(accountFrom.getBalance()).subtract(sum).toPlainString();
-            String accToBalance = new BigDecimal(accountTo.getBalance()).add(sum).toPlainString();
-
-            accountFrom.setBalance(accFromBalance);
-            accountTo.setBalance(accToBalance);
-
-            em.merge(accountFrom);
-            em.merge(accountTo);
+            accountTransfer(transfer.getAccountFrom(), em, account -> new BigDecimal(account.getBalance()).subtract(sum));
+            accountTransfer(transfer.getAccountTo(), em, account -> new BigDecimal(account.getBalance()).add(sum));
 
             em.persist(transfer);
 
@@ -47,5 +39,17 @@ public class TransferService {
         }
 
         return transfer;
+    }
+
+    private void accountTransfer(Long accountId, EntityManager em, Function<Account, BigDecimal> newBalanceClosure) {
+        Account account = em.find(Account.class, accountId, LockModeType.PESSIMISTIC_WRITE);
+
+        if (account == null) {
+            throw new NullPointerException("No such account with id=" + accountId);
+        }
+
+        String newBalance = newBalanceClosure.apply(account).toPlainString();
+        account.setBalance(newBalance);
+        em.merge(account);
     }
 }

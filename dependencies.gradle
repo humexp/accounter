@@ -4,7 +4,8 @@ ext.lib = [
         akka_http_jackson: 'com.typesafe.akka:akka-http-jackson_2.12:10.1.5',
 
         hibernate_core   : 'org.hibernate:hibernate-core:5.3.3.Final',
-        db               : 'com.h2database:h2:1.4.197',
+        postgresql       : 'org.postgresql:postgresql:42.2.5',
+        h2               : 'com.h2database:h2:1.4.197',
 
         logback_classic  : 'ch.qos.logback:logback-classic:1.2.3',
 
@@ -21,7 +22,8 @@ ext.lib_pack = [
         ],
         persistence: [
                 ext.lib.hibernate_core,
-                ext.lib.db
+                ext.lib.postgresql,
+                ext.lib.h2
         ],
         log        : [
                 ext.lib.logback_classic
